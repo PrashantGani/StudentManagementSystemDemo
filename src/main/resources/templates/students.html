@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Student Management System</a>
+</nav>
+
+	<div class ="container">
+		<div class = "row text-center container justify-content-center">
+			<h1>List of Students</h1>
+		</div>
+		
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href = "@{/students/new}" class = "btn btn-info btn-sm mb-3"> Add New Student</a>
+			</div>
+		</div>
+		<table class = "table table-striped table-bordered">
+			<thead class = "table-secondary">
+				<tr>
+					<th> SL No </th>
+					<th> Student Name</th>
+					<th> Student Dept</th>
+					<th> Student Email </th>
+					<th> Student Number </th>
+					<th> Update </th>
+					<th> Delete </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "student: ${students}">
+					<td th:text = "${student.StudentId}"></td>
+					<td th:text = "${student.StudentName}"></td>
+					<td th:text = "${student.StudentDept}"></td>
+					<td th:text = "${student.StudentEmail}"></td>
+					<td th:text = "${student.StudentNumber}"></td>
+					<td>
+						<a th:href = "@{/students/edit/{StudentId}(StudentId=${student.StudentId})}"
+						 class = "btn btn-info">Update</a>
+					</td>
+					<td>
+						<a th:href = "@{/students/{StudentId}(StudentId=${student.StudentId})}"
+						 class = "btn btn-warning">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+		
+	</div>
+</body>
+</html>
